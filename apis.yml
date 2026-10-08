@@ -1,23 +1,281 @@
 aid: chloris-geospatial
+
 name: Chloris Geospatial
-description: 'Chloris Geospatial is a company surfaced via the API Evangelist harvest backlog (source:
-  secondary-market) and added to the network as a stub for full-pipeline profiling.'
+
+image: https://images.prismic.io/chloris/Qrser6mS2HOIqkgk_HeroOption2.png?auto=format,compress
+
+description: Chloris Geospatial provides annual forest biomass and carbon data through a geospatial platform. Their service offers high‑resolution
+  (30 m) forest carbon intelligence, covering over 120 million hectares worldwide, with data dating back to 2000. This enables corporations, investors,
+  and carbon project developers to assess, monitor, and verify forest carbon projects with MRV‑ready outputs.
+
 url: https://raw.githubusercontent.com/api-evangelist/chloris-geospatial/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-08 (modular-v1; was harvest)
+
 specificationVersion: '0.20'
+
 created: '2026-10-08'
+
 modified: '2026-10-08'
+
 tags:
 - Company
-apis: []
+- Geospatial
+- Carbon
+- Data
+- Environmental
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: AgenticAccess
+  url: agentic-access/chloris-geospatial-agentic-access.yml
+- type: Spectral
+  url: rules/chloris-geospatial-rules.yml
+- type: JSONLD
+  url: json-ld/chloris-geospatial-context.jsonld
+- type: Vocabulary
+  url: vocabulary/chloris-geospatial-vocabulary.yml
+- type: Webhooks
+  url: asyncapi/chloris-geospatial-webhooks.yml
+- type: DataModel
+  url: data-model/chloris-geospatial-data-model.yml
+- type: Conventions
+  url: conventions/chloris-geospatial-conventions.yml
+- type: ErrorCatalog
+  url: errors/chloris-geospatial-problem-types.yml
+- type: Conformance
+  url: conformance/chloris-geospatial-conformance.yml
+- type: Hosts
+  url: hosts/chloris-geospatial-hosts.yml
+- type: Vendors
+  url: vendors/chloris-geospatial-vendors.yml
+- type: PrivacyPolicy
+  url: https://www.chloris.earth/privacy-policy
+- type: Documentation
+  url: https://app.chloris.earth/docs/1.12.0/index.html
+- type: GettingStarted
+  url: https://app.chloris.earth/docs/1.12.0/quick_start_guide/01-account-organization-overview.html
+- type: APIReference
+  url: https://app.chloris.earth/docs/1.12.0/api-reference.html
+- type: Authentication
+  url: authentication/chloris-geospatial-authentication.yml
+- type: DomainSecurity
+  url: security/chloris-geospatial-domain-security.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.chloris.earth/
+
+apis:
+- aid: chloris-geospatial:chloris-geospatial-aoi-api
+  name: Chloris Geospatial Aoi API
+  description: The Aoi API from Chloris Geospatial — 2 operation(s) for aoi.
+  humanURL: https://app.chloris.earth/docs/1.12.0/api-reference.html
+  baseURL: https://app.chloris.earth
+  tags:
+  - Aoi
+  properties:
+  - type: OpenAPI
+    url: openapi/chloris-geospatial-aoi-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-usage-report-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-collection-entry-schema.json
+- aid: chloris-geospatial:chloris-geospatial-boundary-api
+  name: Chloris Geospatial Boundary API
+  description: The Boundary API from Chloris Geospatial — 1 operation(s) for boundary.
+  humanURL: https://app.chloris.earth/docs/1.12.0/api-reference.html
+  baseURL: https://app.chloris.earth
+  tags:
+  - Boundary
+  properties:
+  - type: OpenAPI
+    url: openapi/chloris-geospatial-boundary-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-usage-report-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-collection-entry-schema.json
+- aid: chloris-geospatial:chloris-geospatial-collection-api
+  name: Chloris Geospatial Collection API
+  description: The Collection API from Chloris Geospatial — 1 operation(s) for collection.
+  humanURL: https://app.chloris.earth/docs/1.12.0/api-reference.html
+  baseURL: https://app.chloris.earth
+  tags:
+  - Collection
+  properties:
+  - type: OpenAPI
+    url: openapi/chloris-geospatial-collection-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-usage-report-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-collection-entry-schema.json
+- aid: chloris-geospatial:chloris-geospatial-info-api
+  name: Chloris Geospatial Info API
+  description: The Info API from Chloris Geospatial — 1 operation(s) for info.
+  humanURL: https://app.chloris.earth/docs/1.12.0/api-reference.html
+  baseURL: https://app.chloris.earth
+  tags:
+  - Info
+  properties:
+  - type: OpenAPI
+    url: openapi/chloris-geospatial-info-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-usage-report-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-collection-entry-schema.json
+- aid: chloris-geospatial:chloris-geospatial-invite-api
+  name: Chloris Geospatial Invite API
+  description: The Invite API from Chloris Geospatial — 1 operation(s) for invite.
+  humanURL: https://app.chloris.earth/docs/1.12.0/api-reference.html
+  baseURL: https://app.chloris.earth
+  tags:
+  - Invite
+  properties:
+  - type: OpenAPI
+    url: openapi/chloris-geospatial-invite-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-usage-report-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-collection-entry-schema.json
+- aid: chloris-geospatial:chloris-geospatial-mgrstiles-api
+  name: Chloris Geospatial Mgrs Tiles API
+  description: The MgrsTiles API from Chloris Geospatial — 2 operation(s) for mgrstiles.
+  humanURL: https://app.chloris.earth/docs/1.12.0/api-reference.html
+  baseURL: https://app.chloris.earth
+  tags:
+  - MgrsTiles
+  properties:
+  - type: OpenAPI
+    url: openapi/chloris-geospatial-mgrstiles-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-usage-report-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-collection-entry-schema.json
+- aid: chloris-geospatial:chloris-geospatial-organization-api
+  name: Chloris Geospatial Organization API
+  description: The Organization API from Chloris Geospatial — 2 operation(s) for organization.
+  humanURL: https://app.chloris.earth/docs/1.12.0/api-reference.html
+  baseURL: https://app.chloris.earth
+  tags:
+  - Organization
+  properties:
+  - type: OpenAPI
+    url: openapi/chloris-geospatial-organization-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-usage-report-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-collection-entry-schema.json
+- aid: chloris-geospatial:chloris-geospatial-reportingunit-api
+  name: Chloris Geospatial Reporting Unit API
+  description: The ReportingUnit API from Chloris Geospatial — 1 operation(s) for reportingunit.
+  humanURL: https://app.chloris.earth/docs/1.12.0/api-reference.html
+  baseURL: https://app.chloris.earth
+  tags:
+  - ReportingUnit
+  properties:
+  - type: OpenAPI
+    url: openapi/chloris-geospatial-reportingunit-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-usage-report-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-collection-entry-schema.json
+- aid: chloris-geospatial:chloris-geospatial-user-api
+  name: Chloris Geospatial User API
+  description: The User API from Chloris Geospatial — 1 operation(s) for user.
+  humanURL: https://app.chloris.earth/docs/1.12.0/api-reference.html
+  baseURL: https://app.chloris.earth
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/chloris-geospatial-user-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-usage-report-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-reporting-unit-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/chloris-geospatial-collection-entry-schema.json
+x-enrichment:
+  date: '2026-10-08'
+  status: enriched
+  artifacts_added: 22
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

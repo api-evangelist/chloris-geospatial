@@ -1,0 +1,51 @@
+{
+  "provider": "chloris-geospatial",
+  "sources": [
+    "chloris-geospatial-openapi.yml"
+  ],
+  "outputs": [
+    "chloris-geospatial-aoi-api-openapi.yml",
+    "chloris-geospatial-boundary-api-openapi.yml",
+    "chloris-geospatial-collection-api-openapi.yml",
+    "chloris-geospatial-info-api-openapi.yml",
+    "chloris-geospatial-invite-api-openapi.yml",
+    "chloris-geospatial-mgrstiles-api-openapi.yml",
+    "chloris-geospatial-organization-api-openapi.yml",
+    "chloris-geospatial-reportingunit-api-openapi.yml",
+    "chloris-geospatial-user-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/chloris-geospatial-openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "chloris-geospatial-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "chloris-geospatial-openapi.yml: tagged paths GET /info -> Info",
+    "chloris-geospatial-openapi.yml: tagged paths POST /organization -> Organization",
+    "chloris-geospatial-openapi.yml: tagged paths POST /organization/usage -> Organization",
+    "chloris-geospatial-openapi.yml: tagged paths PUT /reportingUnit -> ReportingUnit",
+    "chloris-geospatial-openapi.yml: tagged paths POST /reportingUnit -> ReportingUnit",
+    "chloris-geospatial-openapi.yml: tagged paths DELETE /reportingUnit -> ReportingUnit",
+    "chloris-geospatial-openapi.yml: tagged paths GET /mgrsTiles -> MgrsTiles",
+    "chloris-geospatial-openapi.yml: tagged paths GET /mgrsTiles/{id} -> MgrsTiles",
+    "chloris-geospatial-openapi.yml: tagged paths POST /user -> User",
+    "chloris-geospatial-openapi.yml: tagged paths POST /invite -> Invite",
+    "chloris-geospatial-openapi.yml: tagged paths POST /boundary -> Boundary",
+    "chloris-geospatial-openapi.yml: tagged paths GET /boundary -> Boundary",
+    "chloris-geospatial-openapi.yml: tagged paths PUT /collection -> Collection",
+    "chloris-geospatial-openapi.yml: tagged paths GET /aoi/submit -> Aoi",
+    "chloris-geospatial-openapi.yml: tagged paths GET /aoi/healthz -> Aoi",
+    "chloris-geospatial-openapi.yml: declared missing tag: Aoi",
+    "chloris-geospatial-openapi.yml: declared missing tag: Boundary",
+    "chloris-geospatial-openapi.yml: declared missing tag: Collection",
+    "chloris-geospatial-openapi.yml: declared missing tag: Info",
+    "chloris-geospatial-openapi.yml: declared missing tag: Invite",
+    "chloris-geospatial-openapi.yml: declared missing tag: MgrsTiles",
+    "chloris-geospatial-openapi.yml: declared missing tag: Organization",
+    "chloris-geospatial-openapi.yml: declared missing tag: ReportingUnit",
+    "chloris-geospatial-openapi.yml: declared missing tag: User",
+    "apis.yml register: written (+9 apis, 9 total)"
+  ],
+  "skipped": []
+}

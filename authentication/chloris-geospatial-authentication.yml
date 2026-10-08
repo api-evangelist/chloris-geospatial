@@ -1,0 +1,13 @@
+generated: '2026-10-08'
+method: derived
+source: openapi/chloris-geospatial-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/chloris-geospatial-openapi.yml

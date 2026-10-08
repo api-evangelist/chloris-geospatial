@@ -1,0 +1,391 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/chloris-geospatial/main/json-schema/chloris-geospatial-reporting-unit-entry-schema.json",
+  "title": "reportingUnitEntry",
+  "description": "A reporting unit entry",
+  "x-generated": "2026-10-08",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/chloris-geospatial-openapi.yml#/components/schemas/reportingUnitEntry",
+  "properties": {
+    "organizationId": {
+      "type": "string",
+      "description": "organization ID"
+    },
+    "reportingUnitId": {
+      "type": "string",
+      "description": "reporting unit uuid7"
+    },
+    "branchId": {
+      "type": "string",
+      "description": "If the entry is an aggregate branch (i.e. a tag), this is the branch ID"
+    },
+    "controlReportingUnitId": {
+      "type": "string",
+      "description": "The reporting unit ID of the control site"
+    },
+    "controlForReportingUnitId": {
+      "type": "string",
+      "description": "The reporting unit ID of the site this is a control for"
+    },
+    "tags": {
+      "description": "A list of tags associated with the reporting unit. Acts as a key way to organize and aggregate reporting units.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "A tag associated with the reporting unit, must be URL-safe.",
+        "minLength": 1,
+        "maxLength": 255,
+        "pattern": "^[a-zA-Z0-9:+.\\-_ ]+$"
+      }
+    },
+    "label": {
+      "type": "string",
+      "description": "The label / name of the reporting unit."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the reporting unit."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "When the entry was created (ISO8601)"
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "When the entry was last updated (ISO8601)"
+    },
+    "analysisSubmittedAt": {
+      "type": "string",
+      "description": "When the entry was submitted for processing (ISO8601)"
+    },
+    "analysisCompletedAt": {
+      "type": "string",
+      "description": "When the entry analysis was lasy updated (ISO8601)"
+    },
+    "qualityControlledAt": {
+      "type": "string",
+      "description": "When the entry was QC approved, without this the analysis is considered preliminary and should not be used (ISO8601)"
+    },
+    "deletedAt": {
+      "type": "string",
+      "description": "When the entry was archived (ISO8601)"
+    },
+    "refundedAt": {
+      "type": "string",
+      "description": "When the entry's usage was refunded (ISO8601)"
+    },
+    "usersNotifiedAt": {
+      "type": "string",
+      "description": "When the users were notified the site is ready, only happens once (ISO8601)"
+    },
+    "webhookNotifiedAt": {
+      "type": "string",
+      "description": "When the registered webhook was notified successfully last. Can be used to recover from dropped webhook events. (ISO8601)"
+    },
+    "periodChangeStartYear": {
+      "type": "integer",
+      "description": "The start of the period of interest"
+    },
+    "periodChangeEndYear": {
+      "type": "integer",
+      "description": "The end of the period of interest (inclusive)"
+    },
+    "boundaryPath": {
+      "type": "string",
+      "description": "The path to the geojson boundary for this site"
+    },
+    "hidden": {
+      "type": "boolean",
+      "description": "Whether the entry is hidden by default in the frontend and excluded from aggregation stats. Useful for control sites."
+    },
+    "controlReportingUnit": {
+      "$ref": "#/$defs/reportingUnitEntry"
+    },
+    "areaKm2": {
+      "type": "number",
+      "description": "The vector area of the reporting unit in square kilometers."
+    },
+    "analyzedAreaKm2": {
+      "type": "number",
+      "description": "The raster area of the reporting unit in square kilometers to be used when computing densities."
+    },
+    "pointX": {
+      "type": "number",
+      "description": "The representative circle X (long) coord, guaranteed to intersect the boundary"
+    },
+    "pointY": {
+      "type": "number",
+      "description": "The representative circle Y (lat) coord, guaranteed to intersect the boundary"
+    },
+    "pointR": {
+      "type": "number",
+      "description": "The representative circle R coord, such that the circle fully contains the boundary"
+    },
+    "srcOrganizationId": {
+      "type": "string",
+      "description": "The organization ID of the source organization for this reporting unit, used only if it was copied between environments / organizations."
+    },
+    "dataPath": {
+      "type": "string",
+      "description": "The path to the data files for this reporting unit, used only if it was copied between environments / organizations."
+    },
+    "periodChangeStartYearStock": {
+      "type": "number",
+      "description": "The stock value for the start of the period of interest"
+    },
+    "periodChangeStartYearStockError": {
+      "type": "number",
+      "description": "The stock error for the start of the period of interest"
+    },
+    "periodChangeEndYearStock": {
+      "type": "number",
+      "description": "The stock value for the end of the period of interest"
+    },
+    "periodChangeEndYearStockError": {
+      "type": "number",
+      "description": "The stock error for the end of the period of interest"
+    },
+    "periodChange": {
+      "type": "number",
+      "description": "The change in stock over the period of interest"
+    },
+    "periodChangeError": {
+      "type": "number",
+      "description": "The error in the change in stock over the period of interest"
+    },
+    "periodChangePercent": {
+      "type": "number",
+      "description": "The percent change in stock over the period of interest compared to the start."
+    },
+    "periodChangeGain": {
+      "type": "number",
+      "description": "The gain in stock over the period of interest"
+    },
+    "periodChangeGainError": {
+      "type": "number",
+      "description": "The error in the gain in stock over the period of interest"
+    },
+    "periodChangeLoss": {
+      "type": "number",
+      "description": "The loss in stock over the period of interest"
+    },
+    "periodChangeLossError": {
+      "type": "number",
+      "description": "The error in the loss in stock over the period of interest"
+    },
+    "dryrun": {
+      "type": "boolean",
+      "description": "Whether the entry was created as a dryrun, prevents it from being processed and marks it as deletedAt 3 hours in the future."
+    },
+    "createdAsDryrun": {
+      "type": "boolean",
+      "description": "Present (true) on entries created with dryrun=true, and kept after such an entry is restored or approved and becomes a regular entry. Absent on entries created without dryrun. Whether an entry is a dryrun now is given by analysisStatus and expiresAt."
+    },
+    "calibratedTo": {
+      "type": "string",
+      "description": "The reporting unit ID of the site this is calibrated to."
+    },
+    "calibratedFrom": {
+      "type": "string",
+      "description": "The reporting unit ID of the site this is calibrated from."
+    },
+    "mangrove": {
+      "type": "boolean",
+      "description": "Whether or not the reporting unit is a mangrove site."
+    }
+  },
+  "$defs": {
+    "reportingUnitEntry": {
+      "description": "A reporting unit entry",
+      "properties": {
+        "organizationId": {
+          "type": "string",
+          "description": "organization ID"
+        },
+        "reportingUnitId": {
+          "type": "string",
+          "description": "reporting unit uuid7"
+        },
+        "branchId": {
+          "type": "string",
+          "description": "If the entry is an aggregate branch (i.e. a tag), this is the branch ID"
+        },
+        "controlReportingUnitId": {
+          "type": "string",
+          "description": "The reporting unit ID of the control site"
+        },
+        "controlForReportingUnitId": {
+          "type": "string",
+          "description": "The reporting unit ID of the site this is a control for"
+        },
+        "tags": {
+          "description": "A list of tags associated with the reporting unit. Acts as a key way to organize and aggregate reporting units.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "A tag associated with the reporting unit, must be URL-safe.",
+            "minLength": 1,
+            "maxLength": 255,
+            "pattern": "^[a-zA-Z0-9:+.\\-_ ]+$"
+          }
+        },
+        "label": {
+          "type": "string",
+          "description": "The label / name of the reporting unit."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the reporting unit."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "When the entry was created (ISO8601)"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "When the entry was last updated (ISO8601)"
+        },
+        "analysisSubmittedAt": {
+          "type": "string",
+          "description": "When the entry was submitted for processing (ISO8601)"
+        },
+        "analysisCompletedAt": {
+          "type": "string",
+          "description": "When the entry analysis was lasy updated (ISO8601)"
+        },
+        "qualityControlledAt": {
+          "type": "string",
+          "description": "When the entry was QC approved, without this the analysis is considered preliminary and should not be used (ISO8601)"
+        },
+        "deletedAt": {
+          "type": "string",
+          "description": "When the entry was archived (ISO8601)"
+        },
+        "refundedAt": {
+          "type": "string",
+          "description": "When the entry's usage was refunded (ISO8601)"
+        },
+        "usersNotifiedAt": {
+          "type": "string",
+          "description": "When the users were notified the site is ready, only happens once (ISO8601)"
+        },
+        "webhookNotifiedAt": {
+          "type": "string",
+          "description": "When the registered webhook was notified successfully last. Can be used to recover from dropped webhook events. (ISO8601)"
+        },
+        "periodChangeStartYear": {
+          "type": "integer",
+          "description": "The start of the period of interest"
+        },
+        "periodChangeEndYear": {
+          "type": "integer",
+          "description": "The end of the period of interest (inclusive)"
+        },
+        "boundaryPath": {
+          "type": "string",
+          "description": "The path to the geojson boundary for this site"
+        },
+        "hidden": {
+          "type": "boolean",
+          "description": "Whether the entry is hidden by default in the frontend and excluded from aggregation stats. Useful for control sites."
+        },
+        "controlReportingUnit": {
+          "$ref": "#/$defs/reportingUnitEntry"
+        },
+        "areaKm2": {
+          "type": "number",
+          "description": "The vector area of the reporting unit in square kilometers."
+        },
+        "analyzedAreaKm2": {
+          "type": "number",
+          "description": "The raster area of the reporting unit in square kilometers to be used when computing densities."
+        },
+        "pointX": {
+          "type": "number",
+          "description": "The representative circle X (long) coord, guaranteed to intersect the boundary"
+        },
+        "pointY": {
+          "type": "number",
+          "description": "The representative circle Y (lat) coord, guaranteed to intersect the boundary"
+        },
+        "pointR": {
+          "type": "number",
+          "description": "The representative circle R coord, such that the circle fully contains the boundary"
+        },
+        "srcOrganizationId": {
+          "type": "string",
+          "description": "The organization ID of the source organization for this reporting unit, used only if it was copied between environments / organizations."
+        },
+        "dataPath": {
+          "type": "string",
+          "description": "The path to the data files for this reporting unit, used only if it was copied between environments / organizations."
+        },
+        "periodChangeStartYearStock": {
+          "type": "number",
+          "description": "The stock value for the start of the period of interest"
+        },
+        "periodChangeStartYearStockError": {
+          "type": "number",
+          "description": "The stock error for the start of the period of interest"
+        },
+        "periodChangeEndYearStock": {
+          "type": "number",
+          "description": "The stock value for the end of the period of interest"
+        },
+        "periodChangeEndYearStockError": {
+          "type": "number",
+          "description": "The stock error for the end of the period of interest"
+        },
+        "periodChange": {
+          "type": "number",
+          "description": "The change in stock over the period of interest"
+        },
+        "periodChangeError": {
+          "type": "number",
+          "description": "The error in the change in stock over the period of interest"
+        },
+        "periodChangePercent": {
+          "type": "number",
+          "description": "The percent change in stock over the period of interest compared to the start."
+        },
+        "periodChangeGain": {
+          "type": "number",
+          "description": "The gain in stock over the period of interest"
+        },
+        "periodChangeGainError": {
+          "type": "number",
+          "description": "The error in the gain in stock over the period of interest"
+        },
+        "periodChangeLoss": {
+          "type": "number",
+          "description": "The loss in stock over the period of interest"
+        },
+        "periodChangeLossError": {
+          "type": "number",
+          "description": "The error in the loss in stock over the period of interest"
+        },
+        "dryrun": {
+          "type": "boolean",
+          "description": "Whether the entry was created as a dryrun, prevents it from being processed and marks it as deletedAt 3 hours in the future."
+        },
+        "createdAsDryrun": {
+          "type": "boolean",
+          "description": "Present (true) on entries created with dryrun=true, and kept after such an entry is restored or approved and becomes a regular entry. Absent on entries created without dryrun. Whether an entry is a dryrun now is given by analysisStatus and expiresAt."
+        },
+        "calibratedTo": {
+          "type": "string",
+          "description": "The reporting unit ID of the site this is calibrated to."
+        },
+        "calibratedFrom": {
+          "type": "string",
+          "description": "The reporting unit ID of the site this is calibrated from."
+        },
+        "mangrove": {
+          "type": "boolean",
+          "description": "Whether or not the reporting unit is a mangrove site."
+        }
+      }
+    }
+  }
+}

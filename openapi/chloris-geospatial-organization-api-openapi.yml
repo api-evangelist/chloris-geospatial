@@ -1,0 +1,235 @@
+openapi: 3.2.0
+info:
+  title: Chloris Platform Organization API
+  description: API for interacting with the Chloris Platform. All methods require an Authorization header with a valid id_token unless otherwise noted. See Authentication for details.
+  version: 1.4.1
+  contact:
+    name: Chloris Platform team
+    email: help@chloris.earth
+servers:
+- url: https://app.chloris.earth/api
+security:
+- bearerAuth: []
+tags:
+- name: Organization
+paths:
+  /organization:
+    post:
+      operationId: listOrganizations
+      summary: Retrieve organization entries or update an organization's options
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/organization'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organizationEntry'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+      - Organization
+  /organization/usage:
+    post:
+      operationId: listOrganizationUsage
+      summary: Retrieve organization usage reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                periodId:
+                  type: string
+                  description: period ID, typically the year followed by either the ISO 8601 week number or month number
+                  example: 12341234-1234-1234-1234-123412341234
+                organizationId:
+                  type: string
+                  description: organization ID
+                  example: 12341234-1234-1234-1234-123412341234
+                nextToken:
+                  type: string
+                  description: Token used for pagination. Omitted if there are no more results.
+                  example: 12341234-1234-1234-1234-123412341234
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  nextToken:
+                    type: string
+                    description: Token used for pagination. Omitted if there are no more results.
+                  usageReports:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/organizationUsageReport'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+      - Organization
+components:
+  schemas:
+    organizationUsageReport:
+      properties:
+        organizationId:
+          type: string
+          description: organization ID
+          example: 12341234-1234-1234-1234-123412341234
+        periodId:
+          type: string
+          description: period ID
+          example: 12341234-1234-1234-1234-123412341234
+        activeCount:
+          type: integer
+          description: Total number of active sites at the time of the report
+          example: 10
+        createdCount:
+          type: integer
+          description: New sites created during the period
+          example: 10
+        analyzedCount:
+          type: integer
+          description: New sites analyzed during the period
+          example: 10
+        deliveredCount:
+          type: integer
+          description: New sites delivered during the period
+          example: 10
+        activeAreaKm2:
+          type: number
+          description: Total area km2 of active sites at the time of the report.
+          example: 10
+        createdAreaKm2:
+          type: number
+          description: New area km2 created during the period.
+          example: 10
+        analyzedAreaKm2:
+          type: number
+          description: New area km2 analyzed during the period.
+          example: 10
+        deliveredAreaKm2:
+          type: number
+          description: New area km2 delivered (both analyzed and reviewed) during the period.
+          example: 10
+        active30mAreaKm2:
+          type: number
+          description: Total 30m area km2 of active sites at the time of the report.
+          example: 10
+        created30mAreaKm2:
+          type: number
+          description: New 30m area km2 created during the period.
+          example: 10
+        analyzed30mAreaKm2:
+          type: number
+          description: New 30m area km2 analyzed during the period.
+          example: 10
+        delivered30mAreaKm2:
+          type: number
+          description: New 30m area km2 delivered (both analyzed and reviewed) during the period.
+          example: 10
+        active10mAreaKm2:
+          type: number
+          description: Total 10m area km2 of active sites at the time of the report.
+          example: 10
+        created10mAreaKm2:
+          type: number
+          description: New 10m area km2 created during the period.
+          example: 10
+        analyzed10mAreaKm2:
+          type: number
+          description: New 10m area km2 analyzed during the period.
+          example: 10
+        delivered10mAreaKm2:
+          type: number
+          description: New 10m area km2 delivered (both analyzed and reviewed) during the period.
+          example: 10
+    organizationEntry:
+      properties:
+        organizationId:
+          type: string
+          description: organization ID
+          example: 12341234-1234-1234-1234-123412341234
+        tagOptions:
+          type: object
+          description: Customization options for tags
+        label:
+          type: string
+          description: The name of the organization
+        massUnitOption:
+          type: string
+          description: The preferred display unit for mass
+          example: t
+        areaUnitOption:
+          type: string
+          description: The preferred display unit for area
+          example: ha
+        emailFrequencyOption:
+          type: string
+          description: Email frequency option for the organization, valid values are currently only 'every' and 'never'
+          example: never
+        webhookUrl:
+          type: string
+          description: webhook url
+          example: https://example.com
+        webhookSecret:
+          type: string
+          description: webhook secret
+          example: 12341234-1234-1234-1234-123412341234
+    organization:
+      properties:
+        organizationId:
+          type: string
+          description: organization ID
+          example: 12341234-1234-1234-1234-123412341234
+        tagOptions:
+          type: object
+          description: Customization options for tags
+        label:
+          type: string
+          description: label
+        description:
+          type: string
+          description: This is a description of an organization
+        massUnitOption:
+          type: string
+          description: The preferred display unit for mass
+          example: t
+        areaUnitOption:
+          type: string
+          description: The preferred display unit for area
+          example: ha
+        emailFrequencyOption:
+          type: string
+          description: email frequency option
+          example: daily
+        webhookUrl:
+          type: string
+          description: webhook url
+          example: https://example.com
+        webhookSecret:
+          type: string
+          description: webhook secret
+          example: 12341234-1234-1234-1234-123412341234
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                description: message
+                example: You do not have permission to delete this site
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

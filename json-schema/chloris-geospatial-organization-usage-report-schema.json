@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/chloris-geospatial/main/json-schema/chloris-geospatial-organization-usage-report-schema.json",
+  "title": "organizationUsageReport",
+  "x-generated": "2026-10-08",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/chloris-geospatial-openapi.yml#/components/schemas/organizationUsageReport",
+  "properties": {
+    "organizationId": {
+      "type": "string",
+      "description": "organization ID"
+    },
+    "periodId": {
+      "type": "string",
+      "description": "period ID"
+    },
+    "activeCount": {
+      "type": "integer",
+      "description": "Total number of active sites at the time of the report"
+    },
+    "createdCount": {
+      "type": "integer",
+      "description": "New sites created during the period"
+    },
+    "analyzedCount": {
+      "type": "integer",
+      "description": "New sites analyzed during the period"
+    },
+    "deliveredCount": {
+      "type": "integer",
+      "description": "New sites delivered during the period"
+    },
+    "activeAreaKm2": {
+      "type": "number",
+      "description": "Total area km2 of active sites at the time of the report."
+    },
+    "createdAreaKm2": {
+      "type": "number",
+      "description": "New area km2 created during the period."
+    },
+    "analyzedAreaKm2": {
+      "type": "number",
+      "description": "New area km2 analyzed during the period."
+    },
+    "deliveredAreaKm2": {
+      "type": "number",
+      "description": "New area km2 delivered (both analyzed and reviewed) during the period."
+    },
+    "active30mAreaKm2": {
+      "type": "number",
+      "description": "Total 30m area km2 of active sites at the time of the report."
+    },
+    "created30mAreaKm2": {
+      "type": "number",
+      "description": "New 30m area km2 created during the period."
+    },
+    "analyzed30mAreaKm2": {
+      "type": "number",
+      "description": "New 30m area km2 analyzed during the period."
+    },
+    "delivered30mAreaKm2": {
+      "type": "number",
+      "description": "New 30m area km2 delivered (both analyzed and reviewed) during the period."
+    },
+    "active10mAreaKm2": {
+      "type": "number",
+      "description": "Total 10m area km2 of active sites at the time of the report."
+    },
+    "created10mAreaKm2": {
+      "type": "number",
+      "description": "New 10m area km2 created during the period."
+    },
+    "analyzed10mAreaKm2": {
+      "type": "number",
+      "description": "New 10m area km2 analyzed during the period."
+    },
+    "delivered10mAreaKm2": {
+      "type": "number",
+      "description": "New 10m area km2 delivered (both analyzed and reviewed) during the period."
+    }
+  }
+}

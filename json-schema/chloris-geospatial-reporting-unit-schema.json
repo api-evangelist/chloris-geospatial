@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/chloris-geospatial/main/json-schema/chloris-geospatial-reporting-unit-schema.json",
+  "title": "reportingUnit",
+  "x-generated": "2026-10-08",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/chloris-geospatial-openapi.yml#/components/schemas/reportingUnit",
+  "properties": {
+    "organizationId": {
+      "type": "string",
+      "description": "organization ID"
+    },
+    "reportingUnitId": {
+      "type": "string",
+      "description": "reporting unit UUID"
+    },
+    "controlReportingUnitId": {
+      "type": "string",
+      "description": "control reporting unit id"
+    },
+    "tags": {
+      "type": "array",
+      "description": "The list of tags to organize this site into.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "label": {
+      "type": "string",
+      "description": "label"
+    },
+    "description": {
+      "type": "string",
+      "description": "This is a description of a reportingUnit"
+    },
+    "resolution": {
+      "type": "integer",
+      "description": "The desired resolution of the outputs. Valid options are 30 and 10 (meters)."
+    },
+    "periodChangeStartYear": {
+      "type": "integer",
+      "description": "The start of the period of interest"
+    },
+    "periodChangeEndYear": {
+      "type": "integer",
+      "description": "The end of the period of interest (inclusive)"
+    },
+    "forest": {
+      "type": "boolean",
+      "description": "Whether or not to generate forest change layers in the analysis."
+    },
+    "forestBaselineYear": {
+      "type": "integer",
+      "description": "The year of the forest baseline (periodChangeStartYear will be used if not provided)"
+    },
+    "boundaryPath": {
+      "type": "string",
+      "description": "boundary path"
+    },
+    "controlBoundaryPath": {
+      "type": "string",
+      "description": "control boundary path, only valid for initial creation."
+    },
+    "mangrove": {
+      "type": "boolean",
+      "description": "Whether or not to use the mangrove model for in the analysis. Defaults to false."
+    }
+  }
+}

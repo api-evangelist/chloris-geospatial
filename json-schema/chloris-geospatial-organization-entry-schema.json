@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/chloris-geospatial/main/json-schema/chloris-geospatial-organization-entry-schema.json",
+  "title": "organizationEntry",
+  "x-generated": "2026-10-08",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/chloris-geospatial-openapi.yml#/components/schemas/organizationEntry",
+  "properties": {
+    "organizationId": {
+      "type": "string",
+      "description": "organization ID"
+    },
+    "tagOptions": {
+      "type": "object",
+      "description": "Customization options for tags"
+    },
+    "label": {
+      "type": "string",
+      "description": "The name of the organization"
+    },
+    "massUnitOption": {
+      "type": "string",
+      "description": "The preferred display unit for mass"
+    },
+    "areaUnitOption": {
+      "type": "string",
+      "description": "The preferred display unit for area"
+    },
+    "emailFrequencyOption": {
+      "type": "string",
+      "description": "Email frequency option for the organization, valid values are currently only 'every' and 'never'"
+    },
+    "webhookUrl": {
+      "type": "string",
+      "description": "webhook url"
+    },
+    "webhookSecret": {
+      "type": "string",
+      "description": "webhook secret"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+openapi: 3.2.0
+info:
+  title: Chloris Platform Mgrs Tiles API
+  description: API for interacting with the Chloris Platform. All methods require an Authorization header with a valid id_token unless otherwise noted. See Authentication for details.
+  version: 1.4.1
+  contact:
+    name: Chloris Platform team
+    email: help@chloris.earth
+servers:
+- url: https://app.chloris.earth/api
+security:
+- bearerAuth: []
+tags:
+- name: MgrsTiles
+paths:
+  /mgrsTiles:
+    get:
+      operationId: getMgrsTilesFromBoundary
+      summary: List MGRS tile ids that overlap a given boundary specified by a GeoJSON file…
+      parameters:
+      - name: upload_id
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Path to the boundary file upload, must point to a GeoJSON file in a Chloris S3 bucket
+          example: s3://path/to/geojson
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  tile_ids:
+                    description: reporting unit uuids of the collection items
+                    items:
+                      type: string
+        '400':
+          description: Bad Request
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+      - MgrsTiles
+  /mgrsTiles/{id}:
+    get:
+      operationId: getMgrsTile
+      summary: Get List of presigned S3 URLs pointing to the data releated to a specific MGRS…
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  data_access_urls:
+                    description: Presigned S3 URLs providing access to the data related to the requested MGRS tile
+                    items:
+                      type: string
+        '400':
+          description: Bad Request
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+      - MgrsTiles
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                description: message
+                example: You do not have permission to delete this site
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

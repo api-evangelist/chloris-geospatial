@@ -1,0 +1,15 @@
+generated: '2026-10-08'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://app.chloris.earth/docs/1.12.0/quick_start_guide/01-account-organization-overview.html
+sources:
+- https://app.chloris.earth/docs/1.12.0/quick_start_guide/01-account-organization-overview.html
+- https://app.chloris.earth/docs/1.12.0/quick_start_guide/02-uploading-a-site.html
+- https://app.chloris.earth/docs/1.12.0/quick_start_guide/03-view-sites.html
+- https://app.chloris.earth/docs/1.12.0/quick_start_guide/06-collections.html
+idempotency:
+  coverage: na
+pagination: {}
+note: The provided documentation pages contain no information about API request/response conventions such as idempotency, pagination, versioning,
+  error format, authentication, tracing, rate‑limit headers, or field expansion.
+docs: https://app.chloris.earth/docs/1.12.0/quick_start_guide/01-account-organization-overview.html

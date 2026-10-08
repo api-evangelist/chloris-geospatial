@@ -1,0 +1,35 @@
+generated: '2026-10-08'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/chloris-geospatial-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: null
+coverage:
+  operations: 15
+  statuses_declared: 3
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad Request
+  operations: 4
+  media_types:
+  - application/json
+  schema: null
+- status: 403
+  title: Forbidden
+  description: Forbidden
+  operations: 13
+  media_types:
+  - application/json
+  schema: null
+- status: 503
+  title: Service Unavailable
+  description: Temporarily unavailable because Cognito is throttling; retry after the delay given in the Retry-After
+    header
+  operations: 2
+  media_types:
+  - application/json
+  schema: null

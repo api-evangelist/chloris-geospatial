@@ -1,0 +1,75 @@
+openapi: 3.2.0
+info:
+  title: Chloris Platform Collection API
+  description: API for interacting with the Chloris Platform. All methods require an Authorization header with a valid id_token unless otherwise noted. See Authentication for details.
+  version: 1.4.1
+  contact:
+    name: Chloris Platform team
+    email: help@chloris.earth
+servers:
+- url: https://app.chloris.earth/api
+security:
+- bearerAuth: []
+tags:
+- name: Collection
+paths:
+  /collection:
+    put:
+      operationId: putCollection
+      summary: Create or update a collection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/collectionEntry'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collectionEntry'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+      - Collection
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                description: message
+                example: You do not have permission to delete this site
+  schemas:
+    collectionEntry:
+      properties:
+        organizationId:
+          type: string
+          description: organization ID
+          example: 12341234-1234-1234-1234-123412341234
+        reportingUnitId:
+          type: string
+          description: reporting unit UUID
+          example: 12341234-1234-1234-1234-123412341234
+        label:
+          type: string
+          description: label
+        description:
+          type: string
+          description: This is a description of a reportingUnit
+        reportingUnitIds:
+          type: array
+          description: reporting unit uuids of the collection items
+          items:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

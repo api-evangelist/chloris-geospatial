@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/chloris-geospatial/main/json-schema/chloris-geospatial-collection-entry-schema.json",
+  "title": "collectionEntry",
+  "x-generated": "2026-10-08",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/chloris-geospatial-openapi.yml#/components/schemas/collectionEntry",
+  "properties": {
+    "organizationId": {
+      "type": "string",
+      "description": "organization ID"
+    },
+    "reportingUnitId": {
+      "type": "string",
+      "description": "reporting unit UUID"
+    },
+    "label": {
+      "type": "string",
+      "description": "label"
+    },
+    "description": {
+      "type": "string",
+      "description": "This is a description of a reportingUnit"
+    },
+    "reportingUnitIds": {
+      "type": "array",
+      "description": "reporting unit uuids of the collection items",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

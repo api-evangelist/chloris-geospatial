@@ -1,0 +1,309 @@
+{
+  "@context": {
+    "@vocab": "https://chloris.earth/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "chloris": "https://chloris.earth/schema#",
+    "organization": "chloris:organization",
+    "organizationId": {
+      "@id": "chloris:organizationId",
+      "@type": "xsd:string"
+    },
+    "tagOptions": {
+      "@id": "chloris:tagOptions"
+    },
+    "label": {
+      "@id": "chloris:label",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "chloris:description",
+      "@type": "xsd:string"
+    },
+    "massUnitOption": {
+      "@id": "chloris:massUnitOption",
+      "@type": "xsd:string"
+    },
+    "areaUnitOption": {
+      "@id": "chloris:areaUnitOption",
+      "@type": "xsd:string"
+    },
+    "emailFrequencyOption": {
+      "@id": "chloris:emailFrequencyOption",
+      "@type": "xsd:string"
+    },
+    "webhookUrl": {
+      "@id": "chloris:webhookUrl",
+      "@type": "xsd:string"
+    },
+    "webhookSecret": {
+      "@id": "chloris:webhookSecret",
+      "@type": "xsd:string"
+    },
+    "organizationEntry": "chloris:organizationEntry",
+    "reportingUnit": "chloris:reportingUnit",
+    "reportingUnitId": {
+      "@id": "chloris:reportingUnitId",
+      "@type": "xsd:string"
+    },
+    "controlReportingUnitId": {
+      "@id": "chloris:controlReportingUnitId",
+      "@type": "xsd:string"
+    },
+    "tags": {
+      "@id": "chloris:tags",
+      "@container": "@list"
+    },
+    "resolution": {
+      "@id": "chloris:resolution",
+      "@type": "xsd:integer"
+    },
+    "periodChangeStartYear": {
+      "@id": "chloris:periodChangeStartYear",
+      "@type": "xsd:integer"
+    },
+    "periodChangeEndYear": {
+      "@id": "chloris:periodChangeEndYear",
+      "@type": "xsd:integer"
+    },
+    "forest": {
+      "@id": "chloris:forest",
+      "@type": "xsd:boolean"
+    },
+    "forestBaselineYear": {
+      "@id": "chloris:forestBaselineYear",
+      "@type": "xsd:integer"
+    },
+    "boundaryPath": {
+      "@id": "chloris:boundaryPath",
+      "@type": "xsd:string"
+    },
+    "controlBoundaryPath": {
+      "@id": "chloris:controlBoundaryPath",
+      "@type": "xsd:string"
+    },
+    "mangrove": {
+      "@id": "chloris:mangrove",
+      "@type": "xsd:boolean"
+    },
+    "reportingUnitEntry": "chloris:reportingUnitEntry",
+    "branchId": {
+      "@id": "chloris:branchId",
+      "@type": "xsd:string"
+    },
+    "controlForReportingUnitId": {
+      "@id": "chloris:controlForReportingUnitId",
+      "@type": "xsd:string"
+    },
+    "createdAt": {
+      "@id": "chloris:createdAt",
+      "@type": "xsd:string"
+    },
+    "updatedAt": {
+      "@id": "chloris:updatedAt",
+      "@type": "xsd:string"
+    },
+    "analysisSubmittedAt": {
+      "@id": "chloris:analysisSubmittedAt",
+      "@type": "xsd:string"
+    },
+    "analysisCompletedAt": {
+      "@id": "chloris:analysisCompletedAt",
+      "@type": "xsd:string"
+    },
+    "qualityControlledAt": {
+      "@id": "chloris:qualityControlledAt",
+      "@type": "xsd:string"
+    },
+    "deletedAt": {
+      "@id": "chloris:deletedAt",
+      "@type": "xsd:string"
+    },
+    "refundedAt": {
+      "@id": "chloris:refundedAt",
+      "@type": "xsd:string"
+    },
+    "usersNotifiedAt": {
+      "@id": "chloris:usersNotifiedAt",
+      "@type": "xsd:string"
+    },
+    "webhookNotifiedAt": {
+      "@id": "chloris:webhookNotifiedAt",
+      "@type": "xsd:string"
+    },
+    "hidden": {
+      "@id": "chloris:hidden",
+      "@type": "xsd:boolean"
+    },
+    "controlReportingUnit": {
+      "@id": "chloris:controlReportingUnit",
+      "@type": "@id"
+    },
+    "areaKm2": {
+      "@id": "chloris:areaKm2",
+      "@type": "xsd:decimal"
+    },
+    "analyzedAreaKm2": {
+      "@id": "chloris:analyzedAreaKm2",
+      "@type": "xsd:decimal"
+    },
+    "pointX": {
+      "@id": "chloris:pointX",
+      "@type": "xsd:decimal"
+    },
+    "pointY": {
+      "@id": "chloris:pointY",
+      "@type": "xsd:decimal"
+    },
+    "pointR": {
+      "@id": "chloris:pointR",
+      "@type": "xsd:decimal"
+    },
+    "srcOrganizationId": {
+      "@id": "chloris:srcOrganizationId",
+      "@type": "xsd:string"
+    },
+    "dataPath": {
+      "@id": "chloris:dataPath",
+      "@type": "xsd:string"
+    },
+    "periodChangeStartYearStock": {
+      "@id": "chloris:periodChangeStartYearStock",
+      "@type": "xsd:decimal"
+    },
+    "periodChangeStartYearStockError": {
+      "@id": "chloris:periodChangeStartYearStockError",
+      "@type": "xsd:decimal"
+    },
+    "periodChangeEndYearStock": {
+      "@id": "chloris:periodChangeEndYearStock",
+      "@type": "xsd:decimal"
+    },
+    "periodChangeEndYearStockError": {
+      "@id": "chloris:periodChangeEndYearStockError",
+      "@type": "xsd:decimal"
+    },
+    "periodChange": {
+      "@id": "chloris:periodChange",
+      "@type": "xsd:decimal"
+    },
+    "periodChangeError": {
+      "@id": "chloris:periodChangeError",
+      "@type": "xsd:decimal"
+    },
+    "periodChangePercent": {
+      "@id": "chloris:periodChangePercent",
+      "@type": "xsd:decimal"
+    },
+    "periodChangeGain": {
+      "@id": "chloris:periodChangeGain",
+      "@type": "xsd:decimal"
+    },
+    "periodChangeGainError": {
+      "@id": "chloris:periodChangeGainError",
+      "@type": "xsd:decimal"
+    },
+    "periodChangeLoss": {
+      "@id": "chloris:periodChangeLoss",
+      "@type": "xsd:decimal"
+    },
+    "periodChangeLossError": {
+      "@id": "chloris:periodChangeLossError",
+      "@type": "xsd:decimal"
+    },
+    "dryrun": {
+      "@id": "chloris:dryrun",
+      "@type": "xsd:boolean"
+    },
+    "createdAsDryrun": {
+      "@id": "chloris:createdAsDryrun",
+      "@type": "xsd:boolean"
+    },
+    "calibratedTo": {
+      "@id": "chloris:calibratedTo",
+      "@type": "xsd:string"
+    },
+    "calibratedFrom": {
+      "@id": "chloris:calibratedFrom",
+      "@type": "xsd:string"
+    },
+    "collectionEntry": "chloris:collectionEntry",
+    "reportingUnitIds": {
+      "@id": "chloris:reportingUnitIds",
+      "@container": "@list"
+    },
+    "organizationUsageReport": "chloris:organizationUsageReport",
+    "periodId": {
+      "@id": "chloris:periodId",
+      "@type": "xsd:string"
+    },
+    "activeCount": {
+      "@id": "chloris:activeCount",
+      "@type": "xsd:integer"
+    },
+    "createdCount": {
+      "@id": "chloris:createdCount",
+      "@type": "xsd:integer"
+    },
+    "analyzedCount": {
+      "@id": "chloris:analyzedCount",
+      "@type": "xsd:integer"
+    },
+    "deliveredCount": {
+      "@id": "chloris:deliveredCount",
+      "@type": "xsd:integer"
+    },
+    "activeAreaKm2": {
+      "@id": "chloris:activeAreaKm2",
+      "@type": "xsd:decimal"
+    },
+    "createdAreaKm2": {
+      "@id": "chloris:createdAreaKm2",
+      "@type": "xsd:decimal"
+    },
+    "deliveredAreaKm2": {
+      "@id": "chloris:deliveredAreaKm2",
+      "@type": "xsd:decimal"
+    },
+    "active30mAreaKm2": {
+      "@id": "chloris:active30mAreaKm2",
+      "@type": "xsd:decimal"
+    },
+    "created30mAreaKm2": {
+      "@id": "chloris:created30mAreaKm2",
+      "@type": "xsd:decimal"
+    },
+    "analyzed30mAreaKm2": {
+      "@id": "chloris:analyzed30mAreaKm2",
+      "@type": "xsd:decimal"
+    },
+    "delivered30mAreaKm2": {
+      "@id": "chloris:delivered30mAreaKm2",
+      "@type": "xsd:decimal"
+    },
+    "active10mAreaKm2": {
+      "@id": "chloris:active10mAreaKm2",
+      "@type": "xsd:decimal"
+    },
+    "created10mAreaKm2": {
+      "@id": "chloris:created10mAreaKm2",
+      "@type": "xsd:decimal"
+    },
+    "analyzed10mAreaKm2": {
+      "@id": "chloris:analyzed10mAreaKm2",
+      "@type": "xsd:decimal"
+    },
+    "delivered10mAreaKm2": {
+      "@id": "chloris:delivered10mAreaKm2",
+      "@type": "xsd:decimal"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Chloris Geospatial API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Chloris Geospatial's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-08) from openapi/chloris-geospatial-openapi.yml.",
+  "dcterms:created": "2026-10-08",
+  "dcterms:source": [
+    "openapi/chloris-geospatial-openapi.yml"
+  ]
+}

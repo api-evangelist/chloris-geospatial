@@ -1,0 +1,83 @@
+openapi: 3.2.0
+info:
+  title: Chloris Platform Invite API
+  description: API for interacting with the Chloris Platform. All methods require an Authorization header with a valid id_token unless otherwise noted. See Authentication for details.
+  version: 1.4.1
+  contact:
+    name: Chloris Platform team
+    email: help@chloris.earth
+servers:
+- url: https://app.chloris.earth/api
+security:
+- bearerAuth: []
+tags:
+- name: Invite
+paths:
+  /invite:
+    post:
+      operationId: sendInvite
+      summary: Invite a user to the Chloris Web Platform
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              x-public: true
+              properties:
+                organizationId:
+                  type: string
+                  description: organization ID
+                  example: 12341234-1234-1234-1234-123412341234
+                token:
+                  type: string
+                  description: invite token
+                  example: 12341234-1234-1234-1234-123412341234
+                expires:
+                  type: string
+                  description: expiration date
+                  example: 2020-01-01
+                email:
+                  type: string
+                  description: email address
+                  example: example@gmail.com
+                name:
+                  type: string
+                  description: name
+                  example: Johnny Appleseed
+                role:
+                  type: string
+                  description: role
+                  example: viewer
+      responses:
+        '200':
+          description: Success
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '503':
+          description: Temporarily unavailable because Cognito is throttling; retry after the delay given in the Retry-After header
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    description: error message
+      tags:
+      - Invite
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                description: message
+                example: You do not have permission to delete this site
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

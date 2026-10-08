@@ -1,0 +1,107 @@
+openapi: 3.2.0
+info:
+  title: Chloris Platform User API
+  description: API for interacting with the Chloris Platform. All methods require an Authorization header with a valid id_token unless otherwise noted. See Authentication for details.
+  version: 1.4.1
+  contact:
+    name: Chloris Platform team
+    email: help@chloris.earth
+servers:
+- url: https://app.chloris.earth/api
+security:
+- bearerAuth: []
+tags:
+- name: User
+paths:
+  /user:
+    post:
+      operationId: listUsers
+      summary: List users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                organizationId:
+                  type: string
+                  description: organization ID
+                  example: 12341234-1234-1234-1234-123412341234
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  users:
+                    type: array
+                    description: users
+                    items:
+                      properties:
+                        userId:
+                          type: string
+                          description: user ID number
+                          example: 12341234-1234-1234-1234-123412341234
+                        email:
+                          type: string
+                          description: email address
+                        nickname:
+                          type: string
+                          description: The user's preferred name
+                        name:
+                          type: string
+                          description: name
+                        given_name:
+                          type: string
+                          description: The user's given name (first name, in western cultures)
+                        family_name:
+                          type: string
+                          description: The user's family name (last name, in western cultures)
+                        organization_name:
+                          type: string
+                          description: organization name
+                        organization_title:
+                          type: string
+                          description: organization title
+                  partial:
+                    type: boolean
+                    description: True when group membership data is incomplete because one or more Cognito group lookups failed after retries (admin listing only); affected group IDs are listed in failedGroups
+                  failedGroups:
+                    type: array
+                    description: Cognito group names (organization IDs) whose membership lookup failed; only present when partial is true
+                    items:
+                      type: string
+                  groupMissing:
+                    type: boolean
+                    description: Present and true only when the requested organization exists but its Cognito group does not (data-consistency gap); users is then empty. Omitted on the normal (success) path, and never present on the admin all-users listing
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '503':
+          description: Temporarily unavailable because Cognito is throttling; retry after the delay given in the Retry-After header
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    description: error message
+      tags:
+      - User
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                description: message
+                example: You do not have permission to delete this site
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

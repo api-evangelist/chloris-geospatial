@@ -1,0 +1,401 @@
+openapi: 3.2.0
+info:
+  title: Chloris Platform Reporting Unit API
+  description: API for interacting with the Chloris Platform. All methods require an Authorization header with a valid id_token unless otherwise noted. See Authentication for details.
+  version: 1.4.1
+  contact:
+    name: Chloris Platform team
+    email: help@chloris.earth
+servers:
+- url: https://app.chloris.earth/api
+security:
+- bearerAuth: []
+tags:
+- name: ReportingUnit
+paths:
+  /reportingUnit:
+    put:
+      operationId: putReportingUnit
+      summary: Create or update a reporting unit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reportingUnit'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reportingUnitEntry'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+      - ReportingUnit
+    post:
+      operationId: listReportingUnits
+      summary: Retrieve one or more reporting unit entries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              x-public:
+              - organizationId
+              - reportingUnitId
+              - limit
+              - nextToken
+              - branches
+              - historical
+              - searchLabel
+              - maxPages
+              properties:
+                organizationId:
+                  type: string
+                  description: organization ID
+                  example: 12341234-1234-1234-1234-123412341234
+                reportingUnitId:
+                  type: string
+                  description: reporting unit UUID, omit to list all reporting units
+                  example: 12341234-1234-1234-1234-123412341234
+                limit:
+                  type: integer
+                  description: The maximum number of reporting units to scan per page. When searchLabel is set this also caps each page of the filtered scan; capped at 1000.
+                  example: 100
+                nextToken:
+                  type: string
+                  description: Token used for list pagination. Omit to start at the beginning.
+                  example: 12341234-1234-1234-1234-123412341234
+                branches:
+                  type: boolean
+                  description: Whether to list reporting unit aggregation branches
+                  example: true
+                historical:
+                  type: boolean
+                  description: Whether to list previous versions of reporting units. May be used with reportingUnitId to list historical versions for a specific reporting unit.
+                  example: true
+                drafts:
+                  type: boolean
+                  description: Whether to list draft versions of reporting units. May be used with reportingUnitId to list drafts for a specific reporting unit.
+                  example: true
+                filterReportingUnitIds:
+                  type: array
+                  description: Filter the list of reporting units to only include these reportingUnitIDs. May not be used with historical or drafts.
+                  example:
+                  - 12341234-1234-1234-1234-123412341234
+                  - 12341234-1234-1234-1234-123412341234
+                  items:
+                    type: string
+                  maxItems: 100
+                searchLabel:
+                  type: string
+                  description: Substring to filter reporting units by label (case-sensitive). Results are returned sorted by analysisCompletedAt descending, with non-completed sites at the bottom. May not be used with drafts or historical.
+                  example: Restoration
+                maxPages:
+                  type: integer
+                  description: When searchLabel is set, the maximum number of internal scan pages to consume per request. Each page reads up to `limit` items from the table before filtering. Defaults to 5, capped at 50. Increase to widen the per-request scan budget for sparse matches in large organizations; follow the response nextToken to retrieve subsequent pages.
+                  example: 5
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - description: A list of reporting unit entries
+                  properties:
+                    reportingUnits:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/reportingUnitEntry'
+                    nextToken:
+                      type: string
+                      description: Token used for pagination. Omitted if there are no more results.
+                - description: A [reporting unit, control reporting unit] pair
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/reportingUnitEntry'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+      - ReportingUnit
+    delete:
+      operationId: deleteReportingUnit
+      summary: Archive an existing reporting unit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                organizationId:
+                  type: string
+                  description: organization ID
+                  example: 12341234-1234-1234-1234-123412341234
+                reportingUnitId:
+                  type: string
+                  description: reporting unit UUID
+                  example: 12341234-1234-1234-1234-123412341234
+                refund:
+                  type: boolean
+                  description: Whether to refund the area used by this reporting unit. Only valid for non-versioned reporting units.
+                  example: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    description: message
+                    example: Site deleted
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+      - ReportingUnit
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                description: message
+                example: You do not have permission to delete this site
+  schemas:
+    reportingUnit:
+      properties:
+        organizationId:
+          type: string
+          description: organization ID
+          example: 12341234-1234-1234-1234-123412341234
+        reportingUnitId:
+          type: string
+          description: reporting unit UUID
+          example: 12341234-1234-1234-1234-123412341234
+        controlReportingUnitId:
+          type: string
+          description: control reporting unit id
+        tags:
+          type: array
+          description: The list of tags to organize this site into.
+          example:
+          - tag1
+          - tag2
+          - tag3
+          items:
+            type: string
+        label:
+          type: string
+          description: label
+        description:
+          type: string
+          description: This is a description of a reportingUnit
+        resolution:
+          type: integer
+          description: The desired resolution of the outputs. Valid options are 30 and 10 (meters).
+          example: 30
+        periodChangeStartYear:
+          type: integer
+          description: The start of the period of interest
+          example: 2000
+        periodChangeEndYear:
+          type: integer
+          description: The end of the period of interest (inclusive)
+          example: 2023
+        forest:
+          type: boolean
+          description: Whether or not to generate forest change layers in the analysis.
+          example: true
+        forestBaselineYear:
+          type: integer
+          description: The year of the forest baseline (periodChangeStartYear will be used if not provided)
+          example: 2005
+        boundaryPath:
+          type: string
+          description: boundary path
+          example: s3://path/to/boundary
+        controlBoundaryPath:
+          type: string
+          description: control boundary path, only valid for initial creation.
+          example: s3://path/to/control/boundary
+        mangrove:
+          type: boolean
+          description: Whether or not to use the mangrove model for in the analysis. Defaults to false.
+          example: true
+    reportingUnitEntry:
+      description: A reporting unit entry
+      properties:
+        organizationId:
+          type: string
+          description: organization ID
+          example: 12341234-1234-1234-1234-123412341234
+        reportingUnitId:
+          type: string
+          description: reporting unit uuid7
+          example: 12341234-1234-1234-1234-123412341234
+        branchId:
+          type: string
+          description: If the entry is an aggregate branch (i.e. a tag), this is the branch ID
+          example: 12341234-1234-1234-1234-123412341234
+        controlReportingUnitId:
+          type: string
+          description: The reporting unit ID of the control site
+          example: 12341234-1234-1234-1234-123412341234
+        controlForReportingUnitId:
+          type: string
+          description: The reporting unit ID of the site this is a control for
+          example: 12341234-1234-1234-1234-123412341234
+        tags:
+          description: A list of tags associated with the reporting unit. Acts as a key way to organize and aggregate reporting units.
+          type: array
+          items:
+            type: string
+            description: A tag associated with the reporting unit, must be URL-safe.
+            minLength: 1
+            maxLength: 255
+            pattern: ^[a-zA-Z0-9:+.\-_ ]+$
+        label:
+          type: string
+          description: The label / name of the reporting unit.
+        description:
+          type: string
+          description: A description of the reporting unit.
+        createdAt:
+          type: string
+          description: When the entry was created (ISO8601)
+          example: 2024-01-01 00:00:00+00:00
+        updatedAt:
+          type: string
+          description: When the entry was last updated (ISO8601)
+          example: 2024-01-01 00:00:00+00:00
+        analysisSubmittedAt:
+          type: string
+          description: When the entry was submitted for processing (ISO8601)
+          example: 2024-01-01 00:00:00+00:00
+        analysisCompletedAt:
+          type: string
+          description: When the entry analysis was lasy updated (ISO8601)
+          example: 2024-01-01 00:00:00+00:00
+        qualityControlledAt:
+          type: string
+          description: When the entry was QC approved, without this the analysis is considered preliminary and should not be used (ISO8601)
+          example: 2024-01-01 00:00:00+00:00
+        deletedAt:
+          type: string
+          description: When the entry was archived (ISO8601)
+          example: 2024-01-01 00:00:00+00:00
+        refundedAt:
+          type: string
+          description: When the entry's usage was refunded (ISO8601)
+          example: 2024-01-01 00:00:00+00:00
+        usersNotifiedAt:
+          type: string
+          description: When the users were notified the site is ready, only happens once (ISO8601)
+          example: 2024-01-01 00:00:00+00:00
+        webhookNotifiedAt:
+          type: string
+          description: When the registered webhook was notified successfully last. Can be used to recover from dropped webhook events. (ISO8601)
+          example: 2024-01-01 00:00:00+00:00
+        periodChangeStartYear:
+          type: integer
+          description: The start of the period of interest
+          example: 2020
+        periodChangeEndYear:
+          type: integer
+          description: The end of the period of interest (inclusive)
+          example: 2023
+        boundaryPath:
+          type: string
+          description: The path to the geojson boundary for this site
+          example: s3://path/to/boundary
+        hidden:
+          type: boolean
+          description: Whether the entry is hidden by default in the frontend and excluded from aggregation stats. Useful for control sites.
+          example: false
+        controlReportingUnit:
+          $ref: '#/components/schemas/reportingUnitEntry'
+        areaKm2:
+          type: number
+          description: The vector area of the reporting unit in square kilometers.
+        analyzedAreaKm2:
+          type: number
+          description: The raster area of the reporting unit in square kilometers to be used when computing densities.
+        pointX:
+          type: number
+          description: The representative circle X (long) coord, guaranteed to intersect the boundary
+        pointY:
+          type: number
+          description: The representative circle Y (lat) coord, guaranteed to intersect the boundary
+        pointR:
+          type: number
+          description: The representative circle R coord, such that the circle fully contains the boundary
+        srcOrganizationId:
+          type: string
+          description: The organization ID of the source organization for this reporting unit, used only if it was copied between environments / organizations.
+        dataPath:
+          type: string
+          description: The path to the data files for this reporting unit, used only if it was copied between environments / organizations.
+        periodChangeStartYearStock:
+          type: number
+          description: The stock value for the start of the period of interest
+        periodChangeStartYearStockError:
+          type: number
+          description: The stock error for the start of the period of interest
+        periodChangeEndYearStock:
+          type: number
+          description: The stock value for the end of the period of interest
+        periodChangeEndYearStockError:
+          type: number
+          description: The stock error for the end of the period of interest
+        periodChange:
+          type: number
+          description: The change in stock over the period of interest
+        periodChangeError:
+          type: number
+          description: The error in the change in stock over the period of interest
+        periodChangePercent:
+          type: number
+          description: The percent change in stock over the period of interest compared to the start.
+        periodChangeGain:
+          type: number
+          description: The gain in stock over the period of interest
+        periodChangeGainError:
+          type: number
+          description: The error in the gain in stock over the period of interest
+        periodChangeLoss:
+          type: number
+          description: The loss in stock over the period of interest
+        periodChangeLossError:
+          type: number
+          description: The error in the loss in stock over the period of interest
+        dryrun:
+          type: boolean
+          description: Whether the entry was created as a dryrun, prevents it from being processed and marks it as deletedAt 3 hours in the future.
+        createdAsDryrun:
+          type: boolean
+          description: Present (true) on entries created with dryrun=true, and kept after such an entry is restored or approved and becomes a regular entry. Absent on entries created without dryrun. Whether an entry is a dryrun now is given by analysisStatus and expiresAt.
+        calibratedTo:
+          type: string
+          description: The reporting unit ID of the site this is calibrated to.
+          example: 12341234-1234-1234-1234-123412341234
+        calibratedFrom:
+          type: string
+          description: The reporting unit ID of the site this is calibrated from.
+          example: 12341234-1234-1234-1234-123412341234
+        mangrove:
+          type: boolean
+          description: Whether or not the reporting unit is a mangrove site.
+          example: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,88 @@
+openapi: 3.2.0
+info:
+  title: Chloris Platform Aoi API
+  description: API for interacting with the Chloris Platform. All methods require an Authorization header with a valid id_token unless otherwise noted. See Authentication for details.
+  version: 1.4.1
+  contact:
+    name: Chloris Platform team
+    email: help@chloris.earth
+servers:
+- url: https://app.chloris.earth/api
+security:
+- bearerAuth: []
+tags:
+- name: Aoi
+paths:
+  /aoi/submit:
+    get:
+      operationId: submitAoiToSandbox
+      summary: Retrieve stats for an AOI on-the-fly
+      parameters:
+      - name: data_uri
+        in: query
+        required: true
+        description: S3 URI to the TIF data
+        schema:
+          type: string
+      - name: geometry
+        in: query
+        required: false
+        description: Optional geometry parameter (S3 URI or raw geometry)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job submitted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data_uri:
+                    type: string
+                  geometry:
+                    type: string
+                  result:
+                    type: string
+        '400':
+          description: Bad Request
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+      - Aoi
+  /aoi/healthz:
+    get:
+      operationId: sandboxHealth
+      summary: Health check for sandbox AOI querying service
+      responses:
+        '200':
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: string
+                  service:
+                    type: string
+      tags:
+      - Aoi
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                description: message
+                example: You do not have permission to delete this site
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

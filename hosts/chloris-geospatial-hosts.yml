@@ -1,0 +1,95 @@
+generated: '2026-10-08'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 6
+  own: 6
+  other_domain: 0
+  platform: 0
+  roles:
+  - api
+  - docs
+  - other
+  - website
+hosts:
+- host: api.chloris.earth
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: chloris.earth
+  role: api
+  relation: own
+- host: app.chloris.earth
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - site-links
+  - docs-index
+  - spec-found
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Documentation
+  - GettingStarted
+  - APIReference
+  serves:
+  - api
+  - docs
+  - spec
+  - cdn
+  vendor: cloudfront
+  registrable_domain: chloris.earth
+  role: docs
+  relation: own
+- host: chloris.earth
+  found_by:
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: chloris.earth
+  role: other
+  relation: own
+- host: hs.chloris.earth
+  found_by:
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: chloris.earth
+  role: other
+  relation: own
+- host: viewer.app.chloris.earth
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: chloris.earth
+  role: other
+  relation: own
+- host: www.chloris.earth
+  found_by:
+  - pointer
+  - probed
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - PrivacyPolicy
+  - Website
+  serves:
+  - hosting
+  vendor: vercel
+  registrable_domain: chloris.earth
+  role: website
+  relation: own

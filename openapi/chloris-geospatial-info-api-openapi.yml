@@ -1,0 +1,49 @@
+openapi: 3.2.0
+info:
+  title: Chloris Platform Info API
+  description: API for interacting with the Chloris Platform. All methods require an Authorization header with a valid id_token unless otherwise noted. See Authentication for details.
+  version: 1.4.1
+  contact:
+    name: Chloris Platform team
+    email: help@chloris.earth
+servers:
+- url: https://app.chloris.earth/api
+security:
+- bearerAuth: []
+tags:
+- name: Info
+paths:
+  /info:
+    get:
+      summary: Retrieve API info that may be used by clients. Does not require authentication
+      operationId: getInfo
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  awsCognitoIdentityPoolId:
+                    type: string
+                    description: The AWS Cognito Identity Pool ID
+                  awsRegion:
+                    type: string
+                    description: The AWS region
+                  awsUserPoolsId:
+                    type: string
+                    description: The AWS Cognito User Pool ID
+                  awsUserPoolsWebClientId:
+                    type: string
+                    description: The AWS Cognito User Pool Web Client ID
+                  awsUserFilesS3Bucket:
+                    type: string
+                    description: The AWS S3 bucket for user files
+      tags:
+      - Info
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

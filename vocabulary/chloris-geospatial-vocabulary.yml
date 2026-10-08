@@ -1,0 +1,44 @@
+generated: '2026-10-08'
+method: derived
+generator: derive-vocabulary.py
+source: openapi/chloris-geospatial-openapi.yml
+vocabulary:
+  name: Chloris Geospatial Domain Vocabulary
+  description: 'Terms declared by Chloris Geospatial''s own API contract: its resource groups, objects and enumerations, with the contract''s
+    definitions. Derived, not authored.'
+  version: '2026-10-08'
+  terms:
+  - term: organization
+    definition: 'Object declared by the contract with fields: organizationId, tagOptions, label, description, massUnitOption, areaUnitOption,
+      emailFrequencyOption, webhookUrl, webhookSecret.'
+    tags:
+    - Object
+    source: openapi/chloris-geospatial-openapi.yml#/components/schemas/organization
+  - term: organizationEntry
+    definition: 'Object declared by the contract with fields: organizationId, tagOptions, label, massUnitOption, areaUnitOption, emailFrequencyOption,
+      webhookUrl, webhookSecret.'
+    tags:
+    - Object
+    source: openapi/chloris-geospatial-openapi.yml#/components/schemas/organizationEntry
+  - term: reportingUnit
+    definition: 'Object declared by the contract with fields: organizationId, reportingUnitId, controlReportingUnitId, tags, label, description,
+      resolution, periodChangeStartYear, periodChangeEndYear, forest, forestBaselineYear, boundaryPath. (2 more)'
+    tags:
+    - Object
+    source: openapi/chloris-geospatial-openapi.yml#/components/schemas/reportingUnit
+  - term: reportingUnitEntry
+    definition: A reporting unit entry
+    tags:
+    - Object
+    source: openapi/chloris-geospatial-openapi.yml#/components/schemas/reportingUnitEntry
+  - term: collectionEntry
+    definition: 'Object declared by the contract with fields: organizationId, reportingUnitId, label, description, reportingUnitIds.'
+    tags:
+    - Object
+    source: openapi/chloris-geospatial-openapi.yml#/components/schemas/collectionEntry
+  - term: organizationUsageReport
+    definition: 'Object declared by the contract with fields: organizationId, periodId, activeCount, createdCount, analyzedCount, deliveredCount,
+      activeAreaKm2, createdAreaKm2, analyzedAreaKm2, deliveredAreaKm2, active30mAreaKm2, created30mAreaKm2. (6 more)'
+    tags:
+    - Object
+    source: openapi/chloris-geospatial-openapi.yml#/components/schemas/organizationUsageReport

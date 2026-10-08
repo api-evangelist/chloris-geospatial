@@ -1,0 +1,17 @@
+generated: '2026-10-08'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://app.chloris.earth/docs/1.12.0/api/06-using-webhooks.html
+sources:
+- https://app.chloris.earth/docs/1.12.0/api/06-using-webhooks.html
+- https://app.chloris.earth/docs/1.5.0/05-using-webhooks.html
+description: Chloris Geospatial provides a webhook that is triggered when a site (reporting unit) is ready.
+events:
+- event: reportingUnit
+  description: Called with a POST request containing a JSON body with type "reportingUnit" and data about the organization, reporting unit, and
+    timestamps when the analysis (and optionally export) are completed.
+delivery:
+  signature: X-Signature header containing an HMAC‑SHA256 hash of the signing secret plus the raw request body
+  content_type: application/json
+note: The signing secret is a random string chosen when registering the webhook URL in the Chloris Platform UI.
+docs: https://app.chloris.earth/docs/1.12.0/api/06-using-webhooks.html

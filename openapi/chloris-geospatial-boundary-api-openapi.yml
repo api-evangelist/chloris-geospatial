@@ -1,0 +1,122 @@
+openapi: 3.2.0
+info:
+  title: Chloris Platform Boundary API
+  description: API for interacting with the Chloris Platform. All methods require an Authorization header with a valid id_token unless otherwise noted. See Authentication for details.
+  version: 1.4.1
+  contact:
+    name: Chloris Platform team
+    email: help@chloris.earth
+servers:
+- url: https://app.chloris.earth/api
+security:
+- bearerAuth: []
+tags:
+- name: Boundary
+paths:
+  /boundary:
+    post:
+      operationId: uploadBoundary
+      summary: Request a boundary be normalized. Does not automatically create a reporting unit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                organizationId:
+                  type: string
+                  description: organization ID
+                  example: 12341234-1234-1234-1234-123412341234
+                uploadId:
+                  type: string
+                  description: Optional identifier for this upload, can be any alphanumeric (plus dash) string up to 64 characters. If not provided, a random UUID7 will be used.
+                  example: abcd1234
+                uploadPath:
+                  type: string
+                  description: Path to the boundary file upload, may be a http(s) or S3 path. If upload is a multi-file shapefile, only the .shp file is required.
+                  example: https://example.com/path/to/geojson
+                excludeGeojsonPath:
+                  type: string
+                  description: Path to a normalized geojson boundary that should be excluded from the first. Recommended when uploading a control boundary to prevent overlaps.
+                  example: s3://path/to/geojson
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  uploadId:
+                    type: string
+                    description: The upload ID
+                    example: abcd1234
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    description: message
+                    example: Invalid geojson
+                  failedChecks:
+                    type: array
+                    description: List of failed checks (if any)
+                    items:
+                      type: string
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+      - Boundary
+    get:
+      summary: Get the result of a boundary upload
+      operationId: getBoundaryUpload
+      parameters:
+      - name: uploadId
+        in: query
+        required: true
+        schema:
+          type: string
+          description: upload ID number
+          example: 12341234-1234-1234-1234-123412341234
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  uploadId:
+                    type: string
+                    description: upload ID number
+                    example: 12341234-1234-1234-1234-123412341234
+                  boundaryPath:
+                    type: string
+                    description: boundary path, if normalized successfully
+                    example: s3://path/to/boundary
+                  error:
+                    type: string
+                    description: Error message if the boundary could not be normalized.
+                    example: Invalid geojson
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+      - Boundary
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                description: message
+                example: You do not have permission to delete this site
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
