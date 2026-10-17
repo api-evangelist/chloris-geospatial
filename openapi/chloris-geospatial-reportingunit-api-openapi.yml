@@ -158,17 +158,6 @@ paths:
       tags:
       - ReportingUnit
 components:
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            properties:
-              message:
-                type: string
-                description: message
-                example: You do not have permission to delete this site
   schemas:
     reportingUnit:
       properties:
@@ -394,6 +383,17 @@ components:
           type: boolean
           description: Whether or not the reporting unit is a mangrove site.
           example: true
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                description: message
+                example: You do not have permission to delete this site
   securitySchemes:
     bearerAuth:
       type: http

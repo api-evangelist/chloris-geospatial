@@ -1,7 +1,7 @@
 {
   "provider": "chloris-geospatial",
   "sources": [
-    "chloris-geospatial-openapi.yml"
+    "_original/chloris-geospatial-openapi.yml"
   ],
   "outputs": [
     "chloris-geospatial-aoi-api-openapi.yml",
@@ -14,12 +14,11 @@
     "chloris-geospatial-reportingunit-api-openapi.yml",
     "chloris-geospatial-user-api-openapi.yml"
   ],
-  "archived": [
-    "archived openapi/chloris-geospatial-openapi.yml"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "chloris-geospatial-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "chloris-geospatial-openapi.yml: tagged paths GET /info -> Info",
     "chloris-geospatial-openapi.yml: tagged paths POST /organization -> Organization",
@@ -45,7 +44,17 @@
     "chloris-geospatial-openapi.yml: declared missing tag: Organization",
     "chloris-geospatial-openapi.yml: declared missing tag: ReportingUnit",
     "chloris-geospatial-openapi.yml: declared missing tag: User",
-    "apis.yml register: written (+9 apis, 9 total)"
+    "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "chloris-geospatial-aoi-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chloris-geospatial-boundary-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chloris-geospatial-collection-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chloris-geospatial-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chloris-geospatial-invite-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chloris-geospatial-mgrstiles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chloris-geospatial-organization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chloris-geospatial-reportingunit-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chloris-geospatial-user-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

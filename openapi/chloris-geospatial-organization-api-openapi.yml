@@ -76,6 +76,73 @@ paths:
       - Organization
 components:
   schemas:
+    organization:
+      properties:
+        organizationId:
+          type: string
+          description: organization ID
+          example: 12341234-1234-1234-1234-123412341234
+        tagOptions:
+          type: object
+          description: Customization options for tags
+        label:
+          type: string
+          description: label
+        description:
+          type: string
+          description: This is a description of an organization
+        massUnitOption:
+          type: string
+          description: The preferred display unit for mass
+          example: t
+        areaUnitOption:
+          type: string
+          description: The preferred display unit for area
+          example: ha
+        emailFrequencyOption:
+          type: string
+          description: email frequency option
+          example: daily
+        webhookUrl:
+          type: string
+          description: webhook url
+          example: https://example.com
+        webhookSecret:
+          type: string
+          description: webhook secret
+          example: 12341234-1234-1234-1234-123412341234
+    organizationEntry:
+      properties:
+        organizationId:
+          type: string
+          description: organization ID
+          example: 12341234-1234-1234-1234-123412341234
+        tagOptions:
+          type: object
+          description: Customization options for tags
+        label:
+          type: string
+          description: The name of the organization
+        massUnitOption:
+          type: string
+          description: The preferred display unit for mass
+          example: t
+        areaUnitOption:
+          type: string
+          description: The preferred display unit for area
+          example: ha
+        emailFrequencyOption:
+          type: string
+          description: Email frequency option for the organization, valid values are currently only 'every' and 'never'
+          example: never
+        webhookUrl:
+          type: string
+          description: webhook url
+          example: https://example.com
+        webhookSecret:
+          type: string
+          description: webhook secret
+          example: 12341234-1234-1234-1234-123412341234
     organizationUsageReport:
       properties:
         organizationId:
@@ -150,73 +217,6 @@ components:
           type: number
           description: New 10m area km2 delivered (both analyzed and reviewed) during the period.
           example: 10
-    organizationEntry:
-      properties:
-        organizationId:
-          type: string
-          description: organization ID
-          example: 12341234-1234-1234-1234-123412341234
-        tagOptions:
-          type: object
-          description: Customization options for tags
-        label:
-          type: string
-          description: The name of the organization
-        massUnitOption:
-          type: string
-          description: The preferred display unit for mass
-          example: t
-        areaUnitOption:
-          type: string
-          description: The preferred display unit for area
-          example: ha
-        emailFrequencyOption:
-          type: string
-          description: Email frequency option for the organization, valid values are currently only 'every' and 'never'
-          example: never
-        webhookUrl:
-          type: string
-          description: webhook url
-          example: https://example.com
-        webhookSecret:
-          type: string
-          description: webhook secret
-          example: 12341234-1234-1234-1234-123412341234
-    organization:
-      properties:
-        organizationId:
-          type: string
-          description: organization ID
-          example: 12341234-1234-1234-1234-123412341234
-        tagOptions:
-          type: object
-          description: Customization options for tags
-        label:
-          type: string
-          description: label
-        description:
-          type: string
-          description: This is a description of an organization
-        massUnitOption:
-          type: string
-          description: The preferred display unit for mass
-          example: t
-        areaUnitOption:
-          type: string
-          description: The preferred display unit for area
-          example: ha
-        emailFrequencyOption:
-          type: string
-          description: email frequency option
-          example: daily
-        webhookUrl:
-          type: string
-          description: webhook url
-          example: https://example.com
-        webhookSecret:
-          type: string
-          description: webhook secret
-          example: 12341234-1234-1234-1234-123412341234
   responses:
     Forbidden:
       description: Forbidden
