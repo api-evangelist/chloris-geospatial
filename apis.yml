@@ -81,6 +81,8 @@ apis:
   humanURL: https://app.chloris.earth/docs/1.12.0/api-reference.html
   baseURL: https://app.chloris.earth
   tags:
+  - AOI
+  tags_raw:
   - Aoi
   properties:
   - type: OpenAPI
@@ -169,6 +171,8 @@ apis:
   humanURL: https://app.chloris.earth/docs/1.12.0/api-reference.html
   baseURL: https://app.chloris.earth
   tags:
+  - invite
+  tags_raw:
   - Invite
   properties:
   - type: OpenAPI
